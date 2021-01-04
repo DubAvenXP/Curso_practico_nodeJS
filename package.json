@@ -1,0 +1,24 @@
+{
+  "name": "curso_practico_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DubAvenXP/Curso_practico_nodeJS.git"
+  },
+  "keywords": [
+    "backend",
+    "nodeJS",
+    "Javascript"
+  ],
+  "author": "Alejandro Dubon <alejandrodubon88@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DubAvenXP/Curso_practico_nodeJS/issues"
+  },
+  "homepage": "https://github.com/DubAvenXP/Curso_practico_nodeJS#readme"
+}
