@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/DubAvenXP/Curso_practico_nodeJS/issues"
   },
-  "homepage": "https://github.com/DubAvenXP/Curso_practico_nodeJS#readme"
+  "homepage": "https://github.com/DubAvenXP/Curso_practico_nodeJS#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
