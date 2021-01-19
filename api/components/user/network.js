@@ -1,9 +1,11 @@
 const express = require('express');
-const response = require('../../../network/response')
+const response = require('../../../network/response');
 const router = express.Router();
+const controller = require('./controller');
 
 router.get('/', (req, res) => {
-    response.success(req, res, 'Usuarios obtenidos exitosamente');
+    const lista = controller.list();
+    response.success(req, res, lista, 200);
 });
 router.post('/', (req, res) => {
     res.send('todo funciona');
