@@ -2,6 +2,8 @@ const express = require('express');
 const config = require('../config')
 
 const app = express();
+//Para poder recibir un json
+app.use(express.json());
 const user = require('./components/user/network');
 
 

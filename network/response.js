@@ -8,11 +8,11 @@ const success = (req, res, message, status) => {
         body: statusMessage,
     });
 } 
-const error = (req, res, message, status, details) => {
+const error = (req, res, error, status, details) => {
     let statusCode = status || 500;
-    let statusMessage = message || 'Internal server error';
+    let statusMessage = error.message || 'Internal server error';
 
-    console.error('[Response error] ' + details);
+    console.error('[Response error] ' + error);
     res.status(statusCode).send({
         error: statusMessage,
         status: statusCode,  
