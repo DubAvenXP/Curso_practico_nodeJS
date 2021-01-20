@@ -1,13 +1,13 @@
+const { nanoid } = require('nanoid');
+
 const TABLA = 'user'
 
 
-module.exports = function (injectedStore) {
+module.exports =  (injectedStore) => {
     let store = injectedStore;
 
-    if (!store) {
-        store = require('../../../store/dummy');
-    }
-
+    if (!store) store = require('../../../store/dummy');
+    
     function list() {
         return store.list(TABLA);
     }
@@ -17,7 +17,12 @@ module.exports = function (injectedStore) {
     }
 
     function post(data) {
-        store.upsert(TABLA, data);
+        const user = {
+            id: nanoid(),
+            name: data.name
+        }
+
+        store.upsert(TABLA, user);
     }
 
     function update(id, name) {
