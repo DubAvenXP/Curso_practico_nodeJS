@@ -1,9 +1,9 @@
 const db = {
     'user': [
-        { id: '0', name: 'Sumi'},
-        { id: '1', name: 'Ruka'},
+        { id: '0', name: 'Sumi', username: 'sumi1202'},
+        { id: '1', name: 'Ruka', username: 'rukaXkazuya'},
         { id: '2', name: 'Chizuru'},
-        { id: '3', name: 'Mami'},
+        { id: '3', name: 'Mami', username: 'maminanami'},
     ]
 };
 
@@ -18,6 +18,10 @@ async function get(table, id) {
 }
 
 async function upsert(table, data) {
+    if (!db[table]) {
+        db[table] = [];
+    }
+
     db[table].push(data);
 }
 
