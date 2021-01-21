@@ -16,6 +16,7 @@ async function listUsers(req, res) {
         const lista = await controller.list();
         response.success(req, res, lista, 200);
     } catch (error) {
+        console.error(error);
         response.error(req, res, error, 500, 'Error interno');
     }
 }
