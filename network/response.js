@@ -10,7 +10,7 @@ const success = (req, res, message, status) => {
 } 
 const error = (req, res, error, status, details) => {
     let statusCode = status || 500;
-    let statusMessage = error.message || 'Internal server error';
+    let statusMessage = error || 'Internal server error';
 
     console.error('[Response error] ' + error);
     res.status(statusCode).send({
