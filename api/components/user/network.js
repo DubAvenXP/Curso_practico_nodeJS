@@ -2,12 +2,12 @@ const express = require('express');
 const response = require('../../../network/response');
 const router = express.Router();
 const controller = require('./index');
-
+const secure = require('./secure'); 
 
 router.get('/', listUsers);
 router.get('/:id', listUserById);
 router.post('/', postUser);
-router.patch('/:id', updateUser);
+router.patch('/:id', secure('update'), updateUser);
 router.delete('/:id', removeUser);
 
 
@@ -42,7 +42,7 @@ function postUser(req, res) {
 function updateUser(req, res) {
     try {
         controller.update(req.params.id, req.body.name);
-        response.success(req, res, `Se actualizo usuario ${req.body.id}`, 200);
+        response.success(req, res, `Se actualizo usuario ${req.params.id}`, 200);
     } catch (error) {
         response.error(req, res, error, 500, 'Error interno');
     }

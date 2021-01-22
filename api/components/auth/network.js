@@ -10,6 +10,7 @@ async function login(req, res) {
         const token = await controller.login(req.body.username, req.body.password);
         response.success(req, res, token, 200);
     } catch (error) {
+        //console.log(error);
         response.error(req, res, error, 400, 'Informacion invalida');
     }
 }

@@ -5,11 +5,11 @@ const db = {
         { id: '2', name: 'Chizuru', username: 'chizuruMX'},
         { id: '3', name: 'Mami', username: 'maminanami'},
     ],
-    // 'auth': [
-    //     {id: '0', username: 'sumi1202', password: '123'},
-    //     {id: '1', username: 'rukaXKazuya', password: '123'},
-    //     {id: '2', username: 'chizuruMX', password: '123'},
-    // ]
+    'auth': [
+        {id: '0', username: 'sumi1202', password: '123'},
+        {id: '1', username: 'rukaXKazuya', password: '123'},
+        {id: '2', username: 'chizuruMX', password: '123'},
+    ]
 };
 
 
@@ -28,13 +28,14 @@ async function upsert(table, data) {
     }
 
     db[table].push(data);
-    console.log(db[table]);
 }
 
 async function updateName(table, id, name) {
-    db[table].filter(item => 
-        item.id === id ? item.name = name : null  
-        );
+    db[table].filter(item => {
+        if (item.id === id) {
+            item.name = name;  
+        }
+    });
 }
 
 async function remove(table, id) {
