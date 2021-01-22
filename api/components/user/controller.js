@@ -43,11 +43,19 @@ module.exports =  (injectedStore) => {
         store.remove(TABLA, id)
     }
 
+    async function follow(from, to) {
+        return await store.upsert(`${TABLA}_follow`, {
+            user_from: from,
+            user_to: to,
+        });
+    }
+
     return {
         list,
         get,
         post,
         update,
-        remove
+        remove,
+        follow
     }
 }

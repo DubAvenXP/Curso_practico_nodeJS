@@ -9,6 +9,7 @@ router.get('/:id', listUserById);
 router.post('/', postUser);
 router.patch('/:id', secure('update'), updateUser);
 router.delete('/:id', removeUser);
+router.post('/follow/:id', secure('follow'), follow);
 
 
 async function listUsers(req, res) {
@@ -57,6 +58,25 @@ function removeUser(req, res) {
     }
 }
 
+/**
+ * Vale aclarar que es una propiedad que le pusimos al 
+ * objeto req nosotros mismos en el código.
+ * En decodeHeader de auth/index.js fijate que hacemos
+ * req.user = decoded;
+ * De esa manera en user/network.js en
+ * router.post(’/follow/:id’, secure(‘follow’), follow);
+ * una vez termina de ejecutar secure, 
+ * el objeto req ya tiene cargado por nosotros el req.user.
+ */
 
+async function follow(req, res, next) {
+    try {
+        await controller.follow(req.user.id, req.params.id)
+        response.success(req, res, `Usuario seguido`, 200);
+    } catch (error) {
+        response.error(req, res, error, 500, 'Error interno');
+        
+    }
+}
 
 module.exports = router;
