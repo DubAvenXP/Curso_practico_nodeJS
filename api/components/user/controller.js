@@ -9,12 +9,12 @@ module.exports =  (injectedStore) => {
 
     if (!store) store = require('../../../store/dummy');
     
-    function list() {
-        return store.list(TABLA);
+    async function list() {
+        return await store.list(TABLA);
     }
 
     function get(id) {
-        return store.get(TABLA, id)
+        return store.get(TABLA, 'id', id, 'string')
     }
 
     async function post(data) {
@@ -32,11 +32,11 @@ module.exports =  (injectedStore) => {
             })
         }
 
-        store.upsert(TABLA, user);
+        return await store.upsert(TABLA, user);
     }
 
-    function update(id, name) {
-        store.updateName(TABLA, id, name)
+    function update(id, data) {
+        store.update(TABLA, id, data)
     }
 
     function remove(id) {

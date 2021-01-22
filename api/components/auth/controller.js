@@ -17,7 +17,7 @@ module.exports = (injectedStore) => {
     async function login(username, password) {
         
         // data: objeto con la informacion del usuario, id, username y password
-        const data = await store.query(TABLA, {username: username});
+        const data = await store.query(TABLA, username);
         //comprobacion de la contaseña, de tipo booleano
         const passwordIsOk = await bcrypt.compare(password, data.password);
 

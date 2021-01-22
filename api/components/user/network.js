@@ -32,8 +32,8 @@ async function listUserById(req, res) {
 
 function postUser(req, res) {
     try {
-        controller.post(req.body);
-        response.success(req, res, `Usuario ${req.body.name} creado`, 201);
+        const result = controller.post(req.body);
+        response.success(req, res, `Usuario creado`, 201);
     } catch (error) {
         response.error(req, res, error, 500, 'Error interno');
     }
@@ -41,7 +41,7 @@ function postUser(req, res) {
 
 function updateUser(req, res) {
     try {
-        controller.update(req.params.id, req.body.name);
+        controller.update(req.params.id, req.body);
         response.success(req, res, `Se actualizo usuario ${req.params.id}`, 200);
     } catch (error) {
         response.error(req, res, error, 500, 'Error interno');
