@@ -17,7 +17,8 @@ module.exports = (injectedStore) => {
     async function login(username, password) {
         
         // data: objeto con la informacion del usuario, id, username y password
-        const data = await store.query(TABLA, username);
+        let data = await store.query(TABLA, username);
+        data = JSON.parse(JSON.stringify(data[0]));
         //comprobacion de la contaseña, de tipo booleano
         const passwordIsOk = await bcrypt.compare(password, data.password);
 
@@ -25,7 +26,7 @@ module.exports = (injectedStore) => {
             // sign(data) comprueba que la contraseña
             return auth.sign(data);
         } else {
-            throw err('Informacion invalidad', 404);
+            throw err('Informacion invalida', 404);
         }
 
         

@@ -14,7 +14,7 @@ module.exports =  (injectedStore) => {
     }
 
     function get(id) {
-        return store.get(TABLA, 'id', id, 'string')
+        return store.get(TABLA, 'id', id, 'string');
     }
 
     async function post(data) {
@@ -49,6 +49,30 @@ module.exports =  (injectedStore) => {
             user_to: to,
         });
     }
+    
+    async function followers(id, options) {      
+        const join = {
+            key: TABLA,
+            value: options.a,
+        };
+
+        //user_to
+        let follower = await store.get(`${TABLA}_follow`, options.b, id, 'string', join);
+        follower = JSON.parse(JSON.stringify(follower));
+        
+        const followers = follower.map((item) => {
+            const newObj = {
+                id: item.id,
+                username: item.username,
+            };
+            return newObj
+        });
+        return followers;
+
+        //return follower;
+    }
+
+    
 
     return {
         list,
@@ -56,6 +80,7 @@ module.exports =  (injectedStore) => {
         post,
         update,
         remove,
-        follow
+        follow,
+        followers
     }
 }

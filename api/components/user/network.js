@@ -10,7 +10,8 @@ router.post('/', postUser);
 router.patch('/:id', secure('update'), updateUser);
 router.delete('/:id', removeUser);
 router.post('/follow/:id', secure('follow'), follow);
-
+router.get('/followers/:id', secure('follow'), followers);
+router.get('/following/:id', secure('follow'), following);
 
 async function listUsers(req, res) {
     try {
@@ -76,6 +77,30 @@ async function follow(req, res, next) {
     } catch (error) {
         response.error(req, res, error, 500, 'Error interno');
         
+    }
+}
+
+async function followers(req, res, next) {
+    try {
+        const list = await controller.followers(req.user.id, {
+            a: 'user_from',
+            b: 'user_to',
+        });
+        response.success(req, res, list, 200);
+    } catch (error) {
+        response.error(req, res, error, 500, 'Error interno');
+    }
+}
+
+async function following(req, res, next) {
+    try {
+        const list = await controller.followers(req.user.id, {
+            a: 'user_to',
+            b: 'user_from',
+        });
+        response.success(req, res, list, 200);
+    } catch (error) {
+        response.error(req, res, error, 500, 'Error interno');
     }
 }
 

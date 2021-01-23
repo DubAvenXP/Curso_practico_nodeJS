@@ -44,12 +44,16 @@ function list(table) {
     });
 }
 
-function get(table, search, searched, type) {
-    
+function get(table, search, searched, type, join) {
+    let joinQuery = '';
+    if (join) {
+        joinQuery = `JOIN ${join.key} ON ${table}.${join.value} = ${join.key}.id`;
+    }
+
     if (type === 'string') searched = `'${searched}'`;
 
     return new Promise((resolve, reject) => {
-        connection.query(`SELECT * FROM ${table} WHERE ${search} = ${searched}`, (err, data) => {
+        connection.query(`SELECT * FROM ${table} ${joinQuery} WHERE ${search} = ${searched}`, (err, data) => {
             if (err) return reject(err);
             resolve(data);
         })
@@ -75,13 +79,7 @@ function update(table, id, data) {
 }
 
 async function query(table, username) {
-    let user = await get(table, 'username', username, 'string');
-    
-    return {
-        id: user[0].id,
-        username: user[0].username,
-        password: user[0].password,
-    };
+    return await get(table, 'username', username, 'string');
 }
 
 
