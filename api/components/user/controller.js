@@ -56,7 +56,6 @@ module.exports =  (injectedStore) => {
             value: options.a,
         };
 
-        //user_to
         let follower = await store.get(`${TABLA}_follow`, options.b, id, 'string', join);
         follower = JSON.parse(JSON.stringify(follower));
         

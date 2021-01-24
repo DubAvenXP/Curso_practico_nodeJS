@@ -43,7 +43,18 @@ function list(table) {
         });
     });
 }
-
+/**
+ * 
+ * @param {tabla} table 
+ * @param {matriz (en donde buscar)} search 
+ * @param {valor buscado} searched 
+ * @param {string o int} type 
+ * @param {objeto con 
+ * key: tabla en donde se buscara
+ * value: fereign key de la tabla principal
+ *  } join 
+ * @returns filtro
+ */
 function get(table, search, searched, type, join) {
     let joinQuery = '';
     if (join) {
