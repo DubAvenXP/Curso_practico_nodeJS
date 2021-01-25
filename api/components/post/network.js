@@ -20,7 +20,7 @@ async function listPosts(req, res) {
 
 async function listPostsByUser(req, res) {
     try {
-        const lista = await controller.get(req.user.id);
+        const lista = await controller.get(req.params.id);
         response.success(req, res, lista, 200);
     } catch (error) {
         response.error(req, res, error, 500, 'Error interno');

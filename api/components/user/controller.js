@@ -58,7 +58,7 @@ module.exports =  (injectedStore) => {
 
         let follower = await store.get(`${TABLA}_follow`, options.b, id, 'string', join);
         follower = JSON.parse(JSON.stringify(follower));
-        
+        console.log(follower);
         const followers = follower.map((item) => {
             const newObj = {
                 id: item.id,
