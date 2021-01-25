@@ -7,6 +7,8 @@ function createRemoteDB(host, port) {
     async function list(table) {
         return await req('GET', table);
     }
+
+
     async function get(table, search, searched, type, join) {
         return await req('GET', `${table}/${searched}`, {
             search: search,
@@ -14,18 +16,20 @@ function createRemoteDB(host, port) {
             join: join
         });
     }
+
+
     function upsert(table, data) {
         req('POST', table, data);
     }
+
+    
     function update(table, id, data) {
         req('PUT', `${table}/${id}`, data)
     }
     // function remove(table, id) {
         
     // }
-    // function query(table, username) {
-        
-    // }
+
 
     function req(method, table, data) {
         let url = URL + '/' + table;

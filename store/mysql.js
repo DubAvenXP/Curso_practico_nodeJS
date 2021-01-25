@@ -89,9 +89,6 @@ function update(table, id, data) {
     });
 }
 
-async function query(table, username) {
-    return await get(table, 'username', username, 'string');
-}
 
 
 module.exports = {
@@ -99,5 +96,4 @@ module.exports = {
     get,
     upsert,
     update,
-    query
 }
