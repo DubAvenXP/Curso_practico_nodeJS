@@ -1,6 +1,11 @@
 {
-    "name": "cursonodejs2019",
     "version": 2,
+    "env": {
+        "MYSQL_HOST": "remotemysql.com",
+        "MYSQL_USER": "f9PyMwC8V5",
+        "MYSQL_PASSWORD": "wuWJPsK3if",
+        "MYSQL_DATABASE": "f9PyMwC8V5"
+    },
     "builds": [
         {
             "src": "api/index.js",
@@ -18,11 +23,11 @@
         },
         {
             "src": "/api/user(.*)",
-            "dest": "/api/index.js" 
+            "dest": "/api/index.js"
         },
         {
             "src": "/api/post(.*)",
-            "dest": "/post/index-post.js" 
+            "dest": "/post/index-post.js"
         }
     ]
 }
