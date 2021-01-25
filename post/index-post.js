@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 //router (aca van todas las rutas)
-app.use('/post', post);
+app.use('/api/post', post);
 
 //Middleware ?
 app.use(errors);
