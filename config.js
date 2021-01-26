@@ -19,5 +19,15 @@ module.exports = {
         port: process.env.POST_SRV_PORT || 3002,
         host: process.env.MYSQL_SER_HOST || 'localhost'
     },
-    remoteDb: process.env.REMOTE_DB || false
+    remoteDb: process.env.REMOTE_DB || false,
+    cacheService: {
+        port: process.env.CACHE_SRV_PORT || 3003,
+        host: process.env.CACHE_SRV_HOST || 'localhost'
+    },
+    redis: {
+        port: process.env.REDIS_PORT || 11986,
+        host: process.env.REDIS_HOST || 'redis-11986.c89.us-east-1-3.ec2.cloud.redislabs.com',
+        password: process.REDIS_PASS || '0DyZcdIhPticaHjBZWPTioZclGEolZHs'
+    }
+    
 }
