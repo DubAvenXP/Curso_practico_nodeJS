@@ -1,11 +1,13 @@
 const controller = require('./controller');
 const config = require('../../../config');
 
-// let store;
-// if (config.remoteDb === true) {
-//     const store = require('../../../store/remote-mysql');
-// } else {
-// }
-const store = require('../../../store/mysql');
+let store, cache;
+if (config.remoteDb === true) {
+    store = require('../../../store/remote-mysql');
+    cache = require('../../../store/remote-cache');
+} else {
+    store = require('../../../store/mysql');
+    cache = require('../../../store/redis');
+}
 
-module.exports = controller(store);
+module.exports = controller(store, cache);

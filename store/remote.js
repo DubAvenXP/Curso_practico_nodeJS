@@ -30,6 +30,9 @@ function createRemoteDB(host, port) {
         
     // }
 
+    function removeByteOrderMark(str){
+    return str.replace(/^\ufeff/g,"")
+}
 
     function req(method, table, data) {
         let url = URL + '/' + table;
@@ -39,7 +42,8 @@ function createRemoteDB(host, port) {
             request({
                 method,
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'Accept-Charset': 'utf-8'
                 },
                 url,
                 body: JSON.stringify(data),
@@ -47,9 +51,15 @@ function createRemoteDB(host, port) {
                 if (err) {
                     console.error('Error con la db remota');
                     return reject(err.message);
+                } else {
+                    try {
+                        const response = JSON.parse(body) ;
+                        return resolve(response.body);
+                    } catch (error) {
+                        console.error(error.message);
+                    }
+
                 }
-                const response = JSON.parse(body);
-                return resolve(response.body);
             })
         });
     }

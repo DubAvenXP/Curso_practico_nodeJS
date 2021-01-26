@@ -36,10 +36,10 @@ function handleCon() {
 handleCon();
 
 function list(table) {
-    console.log('list en mysql.js');
     return new Promise((resolve, reject) => {
         connection.query(`SELECT * FROM ${table}`, (err, data) => {
             if (err) return reject(err);
+            data = JSON.parse(JSON.stringify(data));
             resolve(data);
         });
     });
@@ -90,6 +90,9 @@ function update(table, id, data) {
     });
 }
 
+async function query(table, username) {
+    return await get(table, 'username', username, 'string');
+}
 
 
 module.exports = {
@@ -97,4 +100,5 @@ module.exports = {
     get,
     upsert,
     update,
+    query
 }
