@@ -4,7 +4,7 @@ const dbconfig = {
     host: config.mysql.host,
     user: config.mysql.user,
     password: config.mysql.password,
-    //database: config.mysql.database,
+    database: config.mysql.database,
 };
 
 
@@ -36,6 +36,7 @@ function handleCon() {
 handleCon();
 
 function list(table) {
+    console.log('list en mysql.js');
     return new Promise((resolve, reject) => {
         connection.query(`SELECT * FROM ${table}`, (err, data) => {
             if (err) return reject(err);
